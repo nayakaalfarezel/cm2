@@ -7,7 +7,38 @@ public class DoubleLinkedListPesanan15 {
         return head == null;
     }
 
+    // Kode yang dimodifikasi
+    // Method untuk mengecek apakah kode pesanan sudah ada
+    public boolean cekKodePesanan(int kode) {
+
+        NodePesanan15 current = head;
+
+        while (current != null) {
+
+            // Jika kode ditemukan
+            if (current.data.kodePesanan == kode) {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        // Jika kode tidak ditemukan
+        return false;
+    }
+
+    // Kode yang dimodifikasi
+    // Method tambah pesanan dengan validasi kode pesanan
     public void tambahPesanan(Pesanan15 pesanan) {
+
+        // Mengecek apakah kode pesanan sudah ada
+        if (cekKodePesanan(pesanan.kodePesanan)) {
+
+            System.out.println("ERROR : Kode pesanan sudah ada!");
+
+            return;
+        }
+
         NodePesanan15 newNode = new NodePesanan15(null, pesanan, null);
 
         if (isEmpty()) {
@@ -19,6 +50,9 @@ public class DoubleLinkedListPesanan15 {
         }
 
         size++;
+
+        // Keterangan jika pesanan berhasil masuk
+        System.out.println("Pesanan berhasil ditambahkan!");
     }
 
     public void sortingPesanan() {
